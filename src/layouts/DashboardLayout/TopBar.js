@@ -15,12 +15,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from 'src/components/Logo';
+import LogoTitle from 'src/components/LogoTitle';
 
 const useStyles = makeStyles(() => ({
   root: {},
   avatar: {
     width: 60,
     height: 60
+  },
+  logoTitleStyle: {
+    color: 'white'
+  },
+  logoStyle: {
+    width: '50px'
   }
 }));
 
@@ -39,24 +46,6 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
-        <Box flexGrow={1} />
-        <Hidden mdDown>
-          <IconButton color="inherit">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton color="inherit">
-            <InputIcon />
-          </IconButton>
-        </Hidden>
         <Hidden lgUp>
           <IconButton
             color="inherit"
@@ -65,6 +54,18 @@ const TopBar = ({
             <MenuIcon />
           </IconButton>
         </Hidden>
+        <RouterLink to="/">
+          <Hidden mdDown>
+            <Logo
+              className={classes.logoStyle}
+            />
+          </Hidden>
+          <Hidden lgUp>
+          <LogoTitle
+            className={classes.logoTitleStyle}
+          />
+          </Hidden>
+        </RouterLink>
       </Toolbar>
     </AppBar>
   );

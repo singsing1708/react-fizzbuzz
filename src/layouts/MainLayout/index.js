@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MainLayout = () => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <TopBar />
