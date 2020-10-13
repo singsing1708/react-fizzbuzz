@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const GamePanel = ({ className, ...rest }) => {
+const GamePanel = ({ className, onUserClap, ...rest }) => {
   const classes = useStyles();
   const [values, setValues] = useState({
     firstName: 'Katarina',
@@ -85,6 +85,7 @@ const GamePanel = ({ className, ...rest }) => {
                 color="primary"
                 variant="contained"
                 startIcon={<PanToolIcon/>}
+                onClick={onUserClap}
               >
                 Clap
               </Button>
@@ -97,6 +98,7 @@ const GamePanel = ({ className, ...rest }) => {
       </Card>
   );
 };
+
 
 GamePanel.propTypes = {
   className: PropTypes.string

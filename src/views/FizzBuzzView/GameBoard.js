@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -17,17 +17,33 @@ import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import PhoneIcon from '@material-ui/icons/Phone';
 import TabletIcon from '@material-ui/icons/Tablet';
 import GamePanel from './GamePanel';
-
+import CPUPlayer from './CPUPlayer';
+import DisplayNumber from './DisplayNumber'
 
 const useStyles = makeStyles(() => ({
   root: {
     height: '100%'
+  },
+  currentNumer: {
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
+    textAlign: 'center',
+    marginTop: '10rem',
+    fontSize: '4rem'
   }
+
 }));
 
 const GameBoard = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const numberOfPlayer = 4;
+
+  const [currentNumber, setCurrentNumber] = useState(0);
 
   const data = {
     datasets: [
@@ -76,24 +92,28 @@ const GameBoard = ({ className, ...rest }) => {
       color: colors.indigo[500]
     },
     {
-      title: 'Computer1',
+      title: 'Computer2',
       value: "-",
       icon: TabletIcon,
       color: colors.red[600]
     },
     {
-      title: 'Computer1',
+      title: 'Computer3',
       value: "-",
       icon: PhoneIcon,
       color: colors.orange[600]
     },
     {
-      title: 'Computer1',
+      title: 'Computer4',
       value: "-",
       icon: PhoneIcon,
       color: colors.teal[600]
     }
   ];
+
+  function userClap() {
+    setCurrentNumber(currentNumber + 1);
+  }
 
   return (
     <Card
@@ -106,6 +126,10 @@ const GameBoard = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
+          <DisplayNumber
+            className={classes.currentNumer}
+            currentNumber={currentNumber}
+          />
           <Doughnut
             data={data}
             options={options}
@@ -148,10 +172,16 @@ const GameBoard = ({ className, ...rest }) => {
           p={1}
           textAlign="center"
         >
-          <GamePanel/>
+          <GamePanel
+            onUserClap={userClap}
+          />
         </Box>
       </CardContent>
+      <CPUPlayer/>
+      <CPUPlayer/>
+      <CPUPlayer/>
     </Card>
+
   );
 };
 

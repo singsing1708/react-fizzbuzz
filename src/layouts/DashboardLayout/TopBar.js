@@ -23,10 +23,10 @@ const useStyles = makeStyles(() => ({
     width: 60,
     height: 60
   },
-  logoTitleStyle: {
+  logoTitle: {
     color: 'white'
   },
-  logoStyle: {
+  logo: {
     width: '50px'
   }
 }));
@@ -57,12 +57,12 @@ const TopBar = ({
         <RouterLink to="/">
           <Hidden mdDown>
             <Logo
-              className={classes.logoStyle}
+              className={classes.logo}
             />
           </Hidden>
           <Hidden lgUp>
           <LogoTitle
-            className={classes.logoTitleStyle}
+            className={classes.logoTitle}
           />
           </Hidden>
         </RouterLink>
