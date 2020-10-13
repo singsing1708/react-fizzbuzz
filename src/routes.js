@@ -11,14 +11,14 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 // import RegisterView from 'src/views/auth/RegisterView';
 // import SettingsView from 'src/views/settings/SettingsView';
 
-import GameView from 'src/views/GameView';
+import FizzBuzzView from 'src/views/FizzBuzzView';
 
 const routes = [
   {
     path: 'app',
     element: <DashboardLayout />,
     children: [
-      { path: 'game', element: <GameView /> },
+      { path: 'fizz-buzz', element: <FizzBuzzView /> },
       // { path: 'customers', element: <CustomerListView /> },
       // { path: 'dashboard', element: <DashboardView /> },
       // { path: 'products', element: <ProductListView /> },
@@ -33,7 +33,7 @@ const routes = [
       // { path: 'login', element: <LoginView /> },
       // { path: 'register', element: <RegisterView /> },
       { path: '404', element: <NotFoundView /> },
-      { path: '/', element: <Navigate to="/app/game" /> },
+      { path: '/', element: <Navigate to="/app/fizz-buzz" /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }

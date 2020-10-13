@@ -16,6 +16,8 @@ import {
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import PhoneIcon from '@material-ui/icons/Phone';
 import TabletIcon from '@material-ui/icons/Tablet';
+import GamePanel from './GamePanel';
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,25 +25,26 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TrafficByDevice = ({ className, ...rest }) => {
+const GameBoard = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+          data: [100, 100, 100, 100],
         backgroundColor: [
           colors.indigo[500],
-          colors.red[600],
-          colors.orange[600]
+          colors.red[500],
+          colors.orange[500],
+          colors.teal[500]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Computer1', 'Computer2', 'Computer3', "Computer4"]
   };
 
   const options = {
@@ -61,29 +64,34 @@ const TrafficByDevice = ({ className, ...rest }) => {
       enabled: true,
       footerFontColor: theme.palette.text.secondary,
       intersect: false,
-      mode: 'index',
       titleFontColor: theme.palette.text.primary
     }
   };
 
   const devices = [
     {
-      title: 'Desktop',
-      value: 63,
+      title: 'Computer1',
+      value: "-",
       icon: LaptopMacIcon,
       color: colors.indigo[500]
     },
     {
-      title: 'Tablet',
-      value: 15,
+      title: 'Computer1',
+      value: "-",
       icon: TabletIcon,
       color: colors.red[600]
     },
     {
-      title: 'Mobile',
-      value: 23,
+      title: 'Computer1',
+      value: "-",
       icon: PhoneIcon,
       color: colors.orange[600]
+    },
+    {
+      title: 'Computer1',
+      value: "-",
+      icon: PhoneIcon,
+      color: colors.teal[600]
     }
   ];
 
@@ -92,11 +100,10 @@ const TrafficByDevice = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Traffic by Device" />
       <Divider />
       <CardContent>
         <Box
-          height={300}
+          height={400}
           position="relative"
         >
           <Doughnut
@@ -132,18 +139,24 @@ const TrafficByDevice = ({ className, ...rest }) => {
                 variant="h2"
               >
                 {value}
-                %
+
               </Typography>
             </Box>
           ))}
+        </Box>
+        <Box
+          p={1}
+          textAlign="center"
+        >
+          <GamePanel/>
         </Box>
       </CardContent>
     </Card>
   );
 };
 
-TrafficByDevice.propTypes = {
+GameBoard.propTypes = {
   className: PropTypes.string
 };
 
-export default TrafficByDevice;
+export default GameBoard;
